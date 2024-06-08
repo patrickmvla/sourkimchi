@@ -7,6 +7,7 @@ import compression from "compression";
 import mongoose from "mongoose";
 import "dotenv/config.js";
 import { env } from "./env/server.js";
+import router from "./router/index.js";
 
 const app = express();
 
@@ -30,3 +31,5 @@ mongoose.Promise = Promise;
 
 mongoose.connect(env.MONGODB_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
+
+app.use("/", router());
