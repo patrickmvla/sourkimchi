@@ -5,7 +5,7 @@ import { Navigation } from "./navigation";
 
 export const Header = () => {
   return (
-    <header className="px-4 lg:px-14 border-b">
+    <header className="px-4 m-4 lg:px-14 border-b">
       <div className="max-w-screen-2xl mx-auto">
         <div className="w-full flex items-center justify-between">
           <div className="flex items-center lg:gap-x-16">
