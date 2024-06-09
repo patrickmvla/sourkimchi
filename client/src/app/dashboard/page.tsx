@@ -1,9 +1,11 @@
+import { Header } from "@/components/header";
+
 const HomePage = () => {
-    return ( 
-        <div>
-            Home
-        </div>
-     );
-}
- 
+  return (
+    <div className="bg-slate-500">
+      <Header />
+    </div>
+  );
+};
+
 export default HomePage;

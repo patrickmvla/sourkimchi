@@ -1,6 +1,6 @@
 const Layout = ({children}:{children: React.ReactNode}) => {
     return ( 
-        <div>
+        <div className="bg-slate-500">
             {children}
         </div>
      );
