@@ -1,16 +1,13 @@
-import { UserModel } from "../model/users.js";
+import { getUsers } from "../db/users.js";
+import express from "express";
 
+export const getAllUsers = async (req: express.Request, res: express.Response) => {
+  try {
+    const users = await getUsers();
 
-export const getUser = () => UserModel.find();
-export const getUserByEmail = (email: string) => UserModel.findOne({ email });
-export const geUserBytSessionToken = (sessionToken: string) =>
-  UserModel.findOne({
-    "authentication.session": sessionToken,
-  });
-export const getUserById = (id: string) => UserModel.findById(id);
-export const createUser = (values: Record<string, any>) =>
-  new UserModel(values).save().then((user) => user.toObject());
-export const deleteUserById = (id: string) =>
-  UserModel.findOneAndDelete({ _id: id });
-export const updateUserById = (id: string, values: Record<string, any>) =>
-  UserModel.findByIdAndUpdate(id, values);
+    return res.sendStatus(200).json(users);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};
