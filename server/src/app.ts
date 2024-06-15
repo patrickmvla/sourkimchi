@@ -5,7 +5,10 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import mongoose from "mongoose";
+
+import morgan from "morgan"
 import "dotenv/config.js";
+
 import { env } from "./env/server.js";
 import router from "./router/index.js";
 
@@ -17,6 +20,7 @@ app.use(
   })
 );
 
+//
 app.use(compression());
 app.use(bodyParser.json());
 app.use(cookieParser());
