@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MenuSchema } from "./menu.js";
+import { MenuSchema } from "./menu.model.js";
 
 const RestaurantSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "UserModel" },
