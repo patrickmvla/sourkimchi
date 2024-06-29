@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
+  auth0Id: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: [true, "Please provide name"],
