@@ -10,6 +10,7 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "turbo": "^2.0.5"
   },
