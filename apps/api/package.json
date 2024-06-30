@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.11.4",
+    "drizzle-orm": "^0.31.2",
+    "hono": "^4.4.9",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "drizzle-kit": "^0.22.8",
+    "tsx": "^4.7.1"
+  }
+}
