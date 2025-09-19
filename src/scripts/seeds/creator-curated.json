@@ -1,0 +1,354 @@
+[
+  {
+    "platform": "youtube",
+    "displayName": "Townsends",
+    "handle": "@JasTownsends",
+    "url": "https://www.youtube.com/@JasTownsends",
+    "tagline": "18th‑century foodways, wood smoke, and gentle vibes.",
+    "loveNote": "Perfect slow Sundays. Deep historical context, simple methods, and the coziest hearth cooking.",
+    "tags": ["heritage", "history", "open-fire"],
+    "cuisines": ["early american"],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "18th Century Bread – Simple & Satisfying",
+        "url": "https://www.youtube.com/watch?v=6K0C5b67tD4",
+        "platform": "youtube",
+        "note": "A warm introduction to their historical cooking style."
+      },
+      {
+        "title": "How to Cook Over an Open Fire (Basics)",
+        "url": "https://www.youtube.com/watch?v=wZYoS6wrsis",
+        "platform": "youtube",
+        "note": "Practical tips for hearth and campfire cooking."
+      }
+    ],
+    "links": [
+      { "label": "Website", "kind": "website", "url": "https://www.townsends.us" },
+      { "label": "Shop", "kind": "shop", "url": "https://www.townsends.us/collections/all" }
+    ],
+    "isFeatured": true,
+    "featuredRank": 1
+  },
+  {
+    "platform": "youtube",
+    "displayName": "Bon Appétit",
+    "handle": "@BonAppetitDotCom",
+    "url": "https://www.youtube.com/@BonAppetitDotCom",
+    "tagline": "Test kitchen energy — variety, technique, and fun.",
+    "loveNote": "A big tent for styles and skill levels. Great series to binge.",
+    "tags": ["variety", "technique", "series"],
+    "cuisines": [],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Back-to-Back Chef (Classic Episode)",
+        "url": "https://www.youtube.com/watch?v=Q4RrWzRrU_o",
+        "platform": "youtube"
+      },
+      {
+        "title": "Pro Chef vs. Home Cook",
+        "url": "https://www.youtube.com/watch?v=QYw9y1F0tHc",
+        "platform": "youtube"
+      }
+    ],
+    "links": [
+      { "label": "Website", "kind": "website", "url": "https://www.bonappetit.com" }
+    ],
+    "isFeatured": true,
+    "featuredRank": 2
+  },
+  {
+    "platform": "youtube",
+    "displayName": "Babish Culinary Universe",
+    "handle": "@babishculinaryuniverse",
+    "url": "https://www.youtube.com/@babishculinaryuniverse",
+    "externalId": "UCJHA_jMfCvEnv-3kRjTCQXw",
+    "tagline": "Film & TV foods, Basics with Babish, and lots of butter.",
+    "loveNote": "Polished, charming, and endlessly watchable. Basics series is gold for fundamentals.",
+    "tags": ["basics", "comfort", "technique"],
+    "cuisines": [],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Basics with Babish: Knives",
+        "url": "https://www.youtube.com/watch?v=7YvKx8fQHfA",
+        "platform": "youtube"
+      },
+      {
+        "title": "Ratatouille (Binging with Babish)",
+        "url": "https://www.youtube.com/watch?v=V06ZxvK0L_I",
+        "platform": "youtube"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 3
+  },
+  {
+    "platform": "youtube",
+    "displayName": "Joshua Weissman",
+    "handle": "@joshuaweissman",
+    "url": "https://www.youtube.com/@joshuaweissman",
+    "externalId": "UChBEbMKI1eCcejTtmI32UEw",
+    "tagline": "Bold flavors, bread obsession, and technique.",
+    "loveNote": "Entertaining and technical — perfect for leveling up.",
+    "tags": ["technique", "baking", "bread"],
+    "cuisines": [],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "5 Levels of Mashed Potatoes",
+        "url": "https://www.youtube.com/watch?v=QdZ9GmA_7Pw",
+        "platform": "youtube"
+      },
+      {
+        "title": "The Perfect Sourdough Bread",
+        "url": "https://www.youtube.com/watch?v=cIIjV6s-0cA",
+        "platform": "youtube"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 4
+  },
+  {
+    "platform": "youtube",
+    "displayName": "Maangchi",
+    "handle": "@Maangchi",
+    "url": "https://www.youtube.com/@Maangchi",
+    "externalId": "UC8gFadPgK2r1ndqLI04XvvQ",
+    "tagline": "Iconic Korean home cooking.",
+    "loveNote": "Clear instruction and pure joy. Essential for Korean staples.",
+    "tags": ["home cooking"],
+    "cuisines": ["korean"],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Bibimbap (비빔밥)",
+        "url": "https://www.youtube.com/watch?v=KfF5ZLZQm_o",
+        "platform": "youtube"
+      },
+      {
+        "title": "Kimchi (김치) – Traditional Napa Kimchi",
+        "url": "https://www.youtube.com/watch?v=i0tBfGdjGKM",
+        "platform": "youtube"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 5
+  },
+  {
+    "platform": "youtube",
+    "displayName": "J. Kenji López-Alt",
+    "handle": "@JKenjiLopezAlt",
+    "url": "https://www.youtube.com/@JKenjiLopezAlt",
+    "externalId": "UCqqJQ_cXSat0KIAVfIfKkVA",
+    "tagline": "Deep-dive cooking science in real kitchens.",
+    "loveNote": "Evidence-based recipes and techniques that make you a better cook.",
+    "tags": ["science", "technique"],
+    "cuisines": [],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Knife Skills 101",
+        "url": "https://www.youtube.com/watch?v=COmtkS9m4jE",
+        "platform": "youtube"
+      },
+      {
+        "title": "Perfect Scrambled Eggs",
+        "url": "https://www.youtube.com/watch?v=JtR8z0hN3H8",
+        "platform": "youtube"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 6
+  },
+  {
+    "platform": "youtube",
+    "displayName": "Chinese Cooking Demystified",
+    "handle": "@ChineseCookingDemystified",
+    "url": "https://www.youtube.com/@ChineseCookingDemystified",
+    "tagline": "Clear techniques and regional Chinese flavors.",
+    "loveNote": "Demystifies pantry and methods with care and context.",
+    "tags": ["technique", "regional"],
+    "cuisines": ["chinese"],
+    "country": "CN",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "The Essential Chinese Pantry",
+        "url": "https://www.youtube.com/watch?v=ZKcZ1vXpVjE",
+        "platform": "youtube"
+      },
+      {
+        "title": "Mapo Tofu (麻婆豆腐)",
+        "url": "https://www.youtube.com/watch?v=UQ12C8m2Ae0",
+        "platform": "youtube"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 7
+  },
+  {
+    "platform": "youtube",
+    "displayName": "Pasta Grannies",
+    "handle": "@PastaGrannies",
+    "url": "https://www.youtube.com/@PastaGrannies",
+    "tagline": "Nonna-powered handmade pasta.",
+    "loveNote": "Warm, human, and a masterclass in tradition and technique.",
+    "tags": ["heritage", "pasta"],
+    "cuisines": ["italian"],
+    "country": "IT",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Nonna Makes Orecchiette",
+        "url": "https://www.youtube.com/watch?v=5JQjjd4Ggr0",
+        "platform": "youtube"
+      },
+      {
+        "title": "Handmade Tagliatelle",
+        "url": "https://www.youtube.com/watch?v=KQn8R1rUq4I",
+        "platform": "youtube"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 8
+  },
+
+  {
+    "platform": "instagram",
+    "displayName": "Half Baked Harvest",
+    "handle": "@halfbakedharvest",
+    "url": "https://www.instagram.com/halfbakedharvest/",
+    "tagline": "Cozy, crowd-pleasing food with style.",
+    "loveNote": "Weeknight-friendly but special — great for entertaining.",
+    "tags": ["cozy", "baking", "weeknight"],
+    "cuisines": [],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Creamy Tomato Basil Pasta",
+        "url": "https://www.instagram.com/p/Cp2z7r6J5mA/",
+        "platform": "instagram"
+      },
+      {
+        "title": "Sticky Sesame Chicken",
+        "url": "https://www.instagram.com/p/CkLw7mTJKgT/",
+        "platform": "instagram"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 1
+  },
+  {
+    "platform": "instagram",
+    "displayName": "The Korean Vegan",
+    "handle": "@thekoreanvegan",
+    "url": "https://www.instagram.com/thekoreanvegan/",
+    "tagline": "Plant-based Korean flavors and storytelling.",
+    "loveNote": "Deeply personal and deliciously inventive.",
+    "tags": ["vegan", "story-driven"],
+    "cuisines": ["korean"],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Vegan Japchae",
+        "url": "https://www.instagram.com/p/Ckp7Ahxv8tK/",
+        "platform": "instagram"
+      },
+      {
+        "title": "Doenjang Stew",
+        "url": "https://www.instagram.com/p/Ch4B2y5O1w8/",
+        "platform": "instagram"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 2
+  },
+  {
+    "platform": "instagram",
+    "displayName": "Pick Up Limes",
+    "handle": "@pickuplimes",
+    "url": "https://www.instagram.com/pickuplimes/",
+    "tagline": "Colorful, nourishing plant-based cooking.",
+    "loveNote": "Soothing, organized, and nutrition-forward.",
+    "tags": ["vegan", "healthy"],
+    "cuisines": [],
+    "country": "NL",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Creamy Mushroom Pasta",
+        "url": "https://www.instagram.com/p/CkJYk9kP5ez/",
+        "platform": "instagram"
+      },
+      {
+        "title": "Protein-Packed Breakfast Jars",
+        "url": "https://www.instagram.com/p/Cf5bY38P1QH/",
+        "platform": "instagram"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 3
+  },
+  {
+    "platform": "instagram",
+    "displayName": "Smitten Kitchen",
+    "handle": "@smittenkitchen",
+    "url": "https://www.instagram.com/smittenkitchen/",
+    "tagline": "Unfussy, delicious home cooking.",
+    "loveNote": "Tested and trustworthy — instant classics.",
+    "tags": ["baking", "home cooking"],
+    "cuisines": [],
+    "country": "US",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Chocolate Chip Snack Cake",
+        "url": "https://www.instagram.com/p/CgP0tJmO2gk/",
+        "platform": "instagram"
+      },
+      {
+        "title": "Sheet Pan Meatballs",
+        "url": "https://www.instagram.com/p/Ck8r3qfOP1r/",
+        "platform": "instagram"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 4
+  },
+  {
+    "platform": "instagram",
+    "displayName": "Ottolenghi",
+    "handle": "@ottolenghi",
+    "url": "https://www.instagram.com/ottolenghi/",
+    "tagline": "Vegetable-forward feasts and bold flavors.",
+    "loveNote": "Vibrant, herbaceous, and celebratory.",
+    "tags": ["vegetable-forward"],
+    "cuisines": ["middle eastern"],
+    "country": "GB",
+    "language": "en",
+    "startHere": [
+      {
+        "title": "Cauliflower Shawarma",
+        "url": "https://www.instagram.com/p/CFf2lC-lI6O/",
+        "platform": "instagram"
+      },
+      {
+        "title": "Tomato Party Salad",
+        "url": "https://www.instagram.com/p/CSg9yJ8lJqU/",
+        "platform": "instagram"
+      }
+    ],
+    "isFeatured": true,
+    "featuredRank": 5
+  }
+]

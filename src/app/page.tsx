@@ -1,103 +1,358 @@
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// app/page.tsx
+import Link from "next/link";
+import { asc, desc, eq, inArray, sql } from "drizzle-orm";
 
-export default function Home() {
+import { db } from "@/db/client";
+import { recipes, reviews } from "@/db/schema";
+import {
+  creators,
+  creatorCollections,
+  collectionCreators,
+} from "@/db/creator-schema";
+
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import RecipeCard from "@/components/recipe/RecipeCard";
+import CreatorCollectionSection from "@/components/discover/CreatorCollectionSection";
+import CreatorSpotlightCard from "@/components/discover/CreatorSpotlightCard";
+
+export const runtime = "nodejs";
+export const revalidate = 60;
+
+export default async function Home() {
+  // Run in parallel but don’t let one failure crash the page
+  const [latestRes, collectionsRes, creatorsRes] = await Promise.allSettled([
+    getLatestRecipes(12),
+    getFeaturedCollections(2),
+    getFeaturedCreators(6),
+  ]);
+
+  const latestRecipes = latestRes.status === "fulfilled" ? latestRes.value : [];
+  const featuredCollections =
+    collectionsRes.status === "fulfilled" ? collectionsRes.value : [];
+  const featuredCreators =
+    creatorsRes.status === "fulfilled" ? creatorsRes.value : [];
+
+  const collectionsWithItems = await (async () => {
+    try {
+      if (!featuredCollections.length) return [];
+      return await hydrateCollectionsWithCreators(featuredCollections);
+    } catch (e) {
+      console.error("hydrateCollectionsWithCreators: fallback", e);
+      return [];
+    }
+  })();
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      {/* Hero */}
+      <section className="mb-10 rounded-2xl border bg-gradient-to-br from-amber-50 to-white p-6 sm:p-10">
+        <Badge variant="secondary" className="mb-3">
+          SourKimchi
+        </Badge>
+        <h1 className="text-3xl font-semibold leading-tight sm:text-4xl">
+          Fall in love with cooking.
+        </h1>
+        <p className="mt-2 max-w-2xl text-muted-foreground">
+          Structured recipes, a buttery-smooth cook mode, and curated YouTube
+          and Instagram creators you’ll adore.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href="/recipes">
+            <Button size="lg">Browse recipes</Button>
+          </Link>
+          <Link href="/discover">
+            <Button size="lg" variant="outline">
+              Discover creators
+            </Button>
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Featured creator collections or spotlights */}
+      {collectionsWithItems.length > 0 ? (
+        <div className="space-y-8">
+          {collectionsWithItems.map((col) => (
+            <CreatorCollectionSection
+              key={col.slug}
+              title={col.title}
+              description={col.description ?? undefined}
+              items={col.creators}
+              href={`/discover`}
+              columns={3}
+            />
+          ))}
+        </div>
+      ) : featuredCreators.length > 0 ? (
+        <section className="space-y-3">
+          <div className="flex items-end justify-between gap-3">
+            <h2 className="text-xl font-semibold">Creator spotlights</h2>
+            <Link href="/discover">
+              <Button variant="ghost" size="sm">
+                View all
+              </Button>
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {featuredCreators.map((c) => (
+              <CreatorSpotlightCard key={c.slug} c={c} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {/* Latest recipes */}
+      <section className="mt-10 space-y-3">
+        <div className="flex items-end justify-between gap-3">
+          <h2 className="text-xl font-semibold">Latest recipes</h2>
+          <Link href="/recipes">
+            <Button variant="ghost" size="sm">
+              Browse all
+            </Button>
+          </Link>
+        </div>
+        {latestRecipes.length ? (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {latestRecipes.map((r) => (
+              <RecipeCard key={r.id} r={r} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-lg border p-6 text-sm text-muted-foreground">
+            Nothing to show right now. Try again in a moment.
+          </div>
+        )}
+      </section>
+    </main>
   );
+}
+
+/* =========================
+   Data loaders (with fallbacks)
+   ========================= */
+
+async function getLatestRecipes(limit: number) {
+  try {
+    const ra = db
+      .select({
+        recipeId: reviews.recipeId,
+        ratingAvg: sql<number | null>`avg(${reviews.stars})`.as("rating_avg"),
+        ratingCount: sql<number>`count(${reviews.id})`.as("rating_count"),
+      })
+      .from(reviews)
+      .groupBy(reviews.recipeId)
+      .as("ra");
+
+    const totalTimeExpr = sql<number>`
+      COALESCE(
+        ${recipes.totalTimeSec},
+        COALESCE(${recipes.prepTimeSec}, 0) + COALESCE(${recipes.cookTimeSec}, 0) + COALESCE(${recipes.restTimeSec}, 0)
+      )
+    `;
+
+    const rows = await db
+      .select({
+        id: recipes.id,
+        slug: recipes.slug,
+        title: recipes.title,
+        image: recipes.heroImageUrl,
+        cuisine: recipes.cuisine,
+        category: recipes.category,
+        totalTimeSec: totalTimeExpr,
+        ratingAvg: ra.ratingAvg,
+        ratingCount: ra.ratingCount,
+        createdAt: recipes.createdAt,
+      })
+      .from(recipes)
+      .leftJoin(ra, eq(ra.recipeId, recipes.id))
+      .where(eq(recipes.isPublic, true))
+      .orderBy(desc(recipes.createdAt))
+      .limit(limit);
+
+    return rows.map((r) => ({
+      id: r.id,
+      slug: r.slug,
+      title: r.title,
+      image: r.image ?? null,
+      cuisine: r.cuisine ?? null,
+      category: r.category ?? null,
+      totalTimeSec: toNum(r.totalTimeSec),
+      ratingAvg: toNum(r.ratingAvg),
+      ratingCount: toNum(r.ratingCount),
+    }));
+  } catch (e) {
+    console.error("getLatestRecipes: fallback due to DB error", e);
+    return [];
+  }
+}
+
+async function getFeaturedCollections(limit: number) {
+  try {
+    const rows = await db
+      .select({
+        id: creatorCollections.id,
+        slug: creatorCollections.slug,
+        title: creatorCollections.title,
+        description: creatorCollections.description,
+        coverImageUrl: creatorCollections.coverImageUrl,
+        isFeatured: creatorCollections.isFeatured,
+        updatedAt: creatorCollections.updatedAt,
+      })
+      .from(creatorCollections)
+      .where(eq(creatorCollections.isFeatured, true))
+      .orderBy(asc(creatorCollections.title))
+      .limit(limit);
+
+    return rows;
+  } catch (e) {
+    console.error("getFeaturedCollections: fallback due to DB error", e);
+    return [];
+  }
+}
+
+async function hydrateCollectionsWithCreators(
+  cols: Awaited<ReturnType<typeof getFeaturedCollections>>
+) {
+  try {
+    if (!cols.length)
+      return [] as {
+        id: string;
+        slug: string;
+        title: string;
+        description: string | null;
+        creators: CreatorSpotlight[];
+      }[];
+
+    const ids = cols.map((c) => c.id);
+
+    const items = await db
+      .select({
+        collectionId: collectionCreators.collectionId,
+        position: collectionCreators.position,
+        slug: creators.slug,
+        displayName: creators.displayName,
+        handle: creators.handle,
+        url: creators.url,
+        avatarUrl: creators.avatarUrl,
+        platform: creators.platform,
+        tagline: creators.tagline,
+        loveNote: creators.loveNote,
+        tags: creators.tags,
+        cuisines: creators.cuisines,
+        startHere: creators.startHere,
+      })
+      .from(collectionCreators)
+      .innerJoin(creators, eq(collectionCreators.creatorId, creators.id))
+      .where(inArray(collectionCreators.collectionId, ids))
+      .orderBy(asc(collectionCreators.position));
+
+    const grouped = new Map<string, CreatorSpotlight[]>();
+    for (const it of items) {
+      const arr = grouped.get(it.collectionId) ?? [];
+      arr.push({
+        slug: it.slug,
+        platform: it.platform,
+        displayName: it.displayName,
+        handle: it.handle,
+        url: it.url,
+        avatarUrl: it.avatarUrl ?? undefined,
+        tagline: it.tagline ?? undefined,
+        loveNote: it.loveNote ?? undefined,
+        tags: it.tags ?? undefined,
+        cuisines: it.cuisines ?? undefined,
+        startHere: (it.startHere as any) ?? undefined,
+      });
+      grouped.set(it.collectionId, arr);
+    }
+
+    return cols.map((c) => ({
+      id: c.id,
+      slug: c.slug,
+      title: c.title,
+      description: c.description ?? null,
+      creators: grouped.get(c.id) ?? [],
+    }));
+  } catch (e) {
+    console.error(
+      "hydrateCollectionsWithCreators: fallback due to DB error",
+      e
+    );
+    return [];
+  }
+}
+
+async function getFeaturedCreators(limit: number) {
+  try {
+    const rows = await db
+      .select({
+        slug: creators.slug,
+        platform: creators.platform,
+        displayName: creators.displayName,
+        handle: creators.handle,
+        url: creators.url,
+        avatarUrl: creators.avatarUrl,
+        tagline: creators.tagline,
+        loveNote: creators.loveNote,
+        tags: creators.tags,
+        cuisines: creators.cuisines,
+        startHere: creators.startHere,
+        featuredRank: creators.featuredRank,
+        isFeatured: creators.isFeatured,
+      })
+      .from(creators)
+      .where(eq(creators.isFeatured, true))
+      .orderBy(
+        asc(sql<number>`COALESCE(${creators.featuredRank}, 2147483647)`),
+        asc(creators.displayName)
+      )
+      .limit(limit);
+
+    return rows.map((c) => ({
+      slug: c.slug,
+      platform: c.platform,
+      displayName: c.displayName,
+      handle: c.handle,
+      url: c.url,
+      avatarUrl: c.avatarUrl ?? undefined,
+      tagline: c.tagline ?? undefined,
+      loveNote: c.loveNote ?? undefined,
+      tags: c.tags ?? undefined,
+      cuisines: c.cuisines ?? undefined,
+      startHere: (c.startHere as any) ?? undefined,
+    }));
+  } catch (e) {
+    console.error("getFeaturedCreators: fallback due to DB error", e);
+    return [];
+  }
+}
+
+/* =========================
+   Types & helpers
+   ========================= */
+
+type CreatorSpotlight = {
+  slug: string;
+  platform: "youtube" | "instagram" | "website";
+  displayName: string;
+  handle: string;
+  url: string;
+  avatarUrl?: string;
+  tagline?: string;
+  loveNote?: string;
+  tags?: string[];
+  cuisines?: string[];
+  startHere?: {
+    title: string;
+    url: string;
+    platform: "youtube" | "instagram" | "website";
+    note?: string;
+    thumbUrl?: string;
+  }[];
+};
+
+function toNum(v: unknown): number | null {
+  if (v == null) return null;
+  const n = typeof v === "string" ? Number(v) : (v as number);
+  return Number.isFinite(n) ? n : null;
 }

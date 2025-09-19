@@ -1,0 +1,69 @@
+[
+  {
+    "slug": "heritage-cooking",
+    "title": "Heritage cooking",
+    "description": "Open-fire, heirloom techniques, and timeless recipes.",
+    "isFeatured": true,
+    "items": [
+      { "creatorSlug": "youtube-townsends", "position": 1 },
+      { "creatorSlug": "youtube-pasta-grannies", "position": 2 },
+      { "creatorSlug": "youtube-chinese-cooking-demystified", "position": 3 }
+    ]
+  },
+  {
+    "slug": "technique-and-science",
+    "title": "Technique & science",
+    "description": "Evidence-based cooking, fundamentals, and deep dives.",
+    "isFeatured": true,
+    "items": [
+      { "creatorSlug": "youtube-j-kenji-lopez-alt", "position": 1 },
+      { "creatorSlug": "youtube-adam-ragusea", "position": 2 },
+      { "creatorSlug": "youtube-joshua-weissman", "position": 3 },
+      { "creatorSlug": "youtube-babish-culinary-universe", "position": 4 }
+    ]
+  },
+  {
+    "slug": "veggie-vibes",
+    "title": "Veggie vibes",
+    "description": "Plant-forward creators with big flavor.",
+    "isFeatured": true,
+    "items": [
+      { "creatorSlug": "instagram-the-korean-vegan", "position": 1 },
+      { "creatorSlug": "instagram-pick-up-limes", "position": 2 },
+      { "creatorSlug": "instagram-ottolenghi", "position": 3 }
+    ]
+  },
+  {
+    "slug": "baking-masters",
+    "title": "Baking masters",
+    "description": "Bread, pastry, and sweet comforts.",
+    "isFeatured": false,
+    "items": [
+      { "creatorSlug": "instagram-king-arthur-baking", "position": 1 },
+      { "creatorSlug": "youtube-joshua-weissman", "position": 2 },
+      { "creatorSlug": "instagram-smitten-kitchen", "position": 3 }
+    ]
+  },
+  {
+    "slug": "weeknight-heroes",
+    "title": "Weeknight heroes",
+    "description": "Fast, delicious, and low-fuss dinner inspiration.",
+    "isFeatured": false,
+    "items": [
+      { "creatorSlug": "instagram-half-baked-harvest", "position": 1 },
+      { "creatorSlug": "youtube-food-wishes", "position": 2 },
+      { "creatorSlug": "youtube-adam-ragusea", "position": 3 }
+    ]
+  },
+  {
+    "slug": "test-kitchen-favorites",
+    "title": "Test kitchen favorites",
+    "description": "Polished, reliable, and binge-worthy channels.",
+    "isFeatured": false,
+    "items": [
+      { "creatorSlug": "youtube-bon-appetit", "position": 1 },
+      { "creatorSlug": "youtube-nyt-cooking", "position": 2 },
+      { "creatorSlug": "youtube-babish-culinary-universe", "position": 3 }
+    ]
+  }
+]
